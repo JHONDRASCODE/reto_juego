@@ -5,6 +5,11 @@ let tarjeta2 = null;
 let primerResultado = null;
 let segundoResultado = null;
 let movimientos = 0;
+let aciertos = 0;
+
+// Apuntado a documento HTML
+let mostrarMovimientos = document.getElementById( "movimientos" );
+let mostrarAciertos = document.getElementById("aciertos");
 
 //generacion de numeros aleatorios
 let numeros = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8];
@@ -14,24 +19,36 @@ console.log(numeros);
 //Primera Funcion
 function destapar(id){
  tarjetasDestapadas ++;
- console.log(targetasDestapadas);b
- if(targetasDestapadas == 1){
+ console.log(tarjetasDestapadas);
+ if(tarjetasDestapadas == 1){
     //Mostrar promer numero
     tarjeta1 = document.getElementById(id);
     primerResultado = numeros[id];
     tarjeta1.innerHTML = primerResultado;
-//desabilitar el primer boton
 
-tarjeta1.disabled = true;
- }else if(trajetasDestapadas ==2)
- // mostrar segundo numero
- trajeta2 = document.getElementById(id);
- segundoResultado= numeros[id]
- tarjeta2.innerHTML = segundoResultado;
+    //desabilitar el primer boton
+    tarjeta1.disabled = true;
+ }else if(tarjetasDestapadas ==2){
+    // mostrar segundo numero
+    tarjeta2 = document.getElementById(id);
+    segundoResultado= numeros[id];
+    tarjeta2.innerHTML = segundoResultado;
 
- // Deshabilitr segundo boton
- trajeta2.disabled = true;
+    // Deshabilitr segundo boton
+    tarjeta2.disabled = true;
 
- //incrementar movimientos
- movimientos++;
+    //incrementar movimientos
+    movimientos++;
+    mostrarMovimientos.innerHTML = `Movimientos: ${movimientos}`;
+
+    //comparar numeros y actualizar aciertos
+    if(primerResultado == segundoResultado){
+       // encerrra contador tarjetas destapadas 
+       tarjetasDestapadas = 0;
+
+       //Aumentar aciertos
+       aciertos++;
+       mostrarAciertos.innerHTML=`Aciertos: ${aciertos}`;
+    }
+ }
 }
